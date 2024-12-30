@@ -6,21 +6,23 @@
     <title>Register</title>
 </head>
 <body>
-    <div>
-        <h2>Register</h2>
-        <form action="/register-success" method="post">
-            <div>
-                <label for="username">Username</label><br>
-                <input type="text" id="username" name="username" placeholder="Enter your username" required>
-            </div><br>
-            <div>
-                <label for="password">Password</label><br>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-            </div><br>
-            <div>
-                <button type="submit">Register</button>
-            </div>
-        </form>
-    </div>
+    <h2>Register</h2>
+    <form action="register.php" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Choose a username" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter a password" required><br><br>
+
+        <label for="confirm_password">Confirm Password:</label>
+        <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required><br><br>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p><a href="index.html">Back to login</a></p>
 </body>
 </html>
