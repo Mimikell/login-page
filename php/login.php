@@ -13,15 +13,14 @@ if (!$conn) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $inputUsername = $_POST['username'];
-    $inputPassword = $_POST['password'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE username='$inputUsername' AND password='$inputPassword'";
-    
+    $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
-        $_SESSION['username'] = $inputUsername;
+        $_SESSION['username'] = $username;
         header("Location: dashboard.php");
         exit();
     } else {
@@ -31,4 +30,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 mysqli_close($conn);
 ?>
+
 
