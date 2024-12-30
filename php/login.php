@@ -8,20 +8,19 @@ $dbname = "my_database";
 
 $conn = new mysqli($servername, $dbUsername, $dbPassword, $dbname);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $inputUsername = mysqli_real_escape_string($conn, $_POST['username']);
-    $inputPassword = mysqli_real_escape_string($conn, $_POST['password']);
-    
-    //$inputPassword = md5($inputPassword);
-    
-    $sql = "SELECT * FROM users WHERE username='$inputUsername' AND password='$inputPassword'";
-    $result = $conn->query($sql);
+    $inputUsername = $_POST['username'];
+    $inputPassword = $_POST['password'];
 
-    if ($result->num_rows > 0) {
+    $sql = "SELECT * FROM users WHERE username='$inputUsername' AND password='$inputPassword'";
+    
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
         $_SESSION['username'] = $inputUsername;
         header("Location: dashboard.php");
         exit();
@@ -30,5 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-$conn->close();
+mysqli_close($conn);
 ?>
+
