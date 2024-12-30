@@ -3,7 +3,7 @@ session_start();
 
 $servername = "localhost";
 $dbUsername = "root";
-$dbPassword = "1234";
+$dbPassword = "";
 $dbname = "login_system";
 
 $conn = new mysqli($servername, $dbUsername, $dbPassword, $dbname);
@@ -21,14 +21,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_num_rows($result) > 0) {
         $_SESSION['username'] = $username;
-        header("Location: dashboard.php");
+        header("Location: ../html/success.html");
         exit();
     } else {
-        echo "Invalid username or password.";
+        header("Location: ../html/index.html?error=Invalid username or password");
+        exit();
     }
 }
 
 mysqli_close($conn);
 ?>
+
 
 
